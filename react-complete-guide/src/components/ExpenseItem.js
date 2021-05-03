@@ -13,15 +13,19 @@
 import "./ExpenseItem.css";
 
 function ExpenseItem() {
-    return (
-        <div className="expense-item">
-            <div>May 3rd, 2021</div>
-            <div className="expense-item__description">
-                <h2>Car Insurance</h2>
-                <div className="expense-item__price">$294.67</div>
-            </div>
-        </div>
-    );
+  const expenseDate = new Date(2021, 4, 3);
+  const expenseTitle = "Car Insurance";
+  const expenseAmount = 294.67;
+
+  return (
+    <div className="expense-item">
+      <div>{expenseDate.toLocaleString()}</div>
+      <div className="expense-item__description">
+        <h2>{expenseTitle}</h2>
+        <div className="expense-item__price">${expenseAmount}</div>
+      </div>
+    </div>
+  );
 }
 
 // components must be exported in order to be used
