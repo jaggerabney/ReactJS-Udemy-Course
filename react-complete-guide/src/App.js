@@ -1,4 +1,4 @@
-import './App.css';
+import ExpenseItem from "./components/ExpenseItem";
 
 function App() {
   return (
@@ -12,10 +12,18 @@ function App() {
     // it works, but is cumbersome and verbose
     // with react, we just specify the end state - what we want to see -
     // and react does all of the heavy lifting in the background
+    
+    // custom components are put into their own files
+    // they exist in a sort of component tree, where the topmost component
+    // is rendered into an html page and all subordinate components
+    // are used as html elements in that page
     <div>
       <h2>Let's get started!</h2>
-      <p>This is also visible!</p>
+      <ExpenseItem></ExpenseItem>
     </div>
+
+    // all react elements must have their first letter capitalized;
+    // that is how they are identified as react components
   );
 }
 
