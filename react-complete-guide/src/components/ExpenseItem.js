@@ -12,17 +12,16 @@
 // they must be imported for them to work however
 import "./ExpenseItem.css";
 
-function ExpenseItem() {
-  const expenseDate = new Date(2021, 4, 3);
-  const expenseTitle = "Car Insurance";
-  const expenseAmount = 294.67;
-
+function ExpenseItem(props) {
+  // data can be passed to components
+  // this is done via "props", which are essentially
+  // custom HTML attributes
   return (
     <div className="expense-item">
-      <div>{expenseDate.toLocaleString()}</div>
+      <div>{props.date.toLocaleString()}</div>
       <div className="expense-item__description">
-        <h2>{expenseTitle}</h2>
-        <div className="expense-item__price">${expenseAmount}</div>
+        <h2>{props.title}</h2>
+        <div className="expense-item__price">${props.amount}</div>
       </div>
     </div>
   );
