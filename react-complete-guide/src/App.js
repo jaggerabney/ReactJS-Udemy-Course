@@ -49,7 +49,7 @@ function App() {
     // from what i can tell, you literally just write whatever
     // and it becomes one of the component's properties
     // pretty cool tbh
-    // you also need to specify the properties parameter in the 
+    // you also need to specify the properties parameter in the
     // components function!
     <div>
       <h2>Let's get started!</h2>
