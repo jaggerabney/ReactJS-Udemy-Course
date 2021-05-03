@@ -7,13 +7,18 @@
 
 // there is one important rule regarding react components:
 // you must have only one root element per component
+
+// css files can be written for components as well;
+// they must be imported for them to work however
+import "./ExpenseItem.css";
+
 function ExpenseItem() {
     return (
-        <div>
+        <div className="expense-item">
             <div>May 3rd, 2021</div>
-            <div>
+            <div className="expense-item__description">
                 <h2>Car Insurance</h2>
-                <div>$294.67</div>
+                <div className="expense-item__price">$294.67</div>
             </div>
         </div>
     );
