@@ -1,6 +1,10 @@
 import Expenses from "./components/Expenses/Expenses";
 import React from "react";
 
+// component functions can be written as arrow functions
+// it's 100% optional - as the project stands right now, 
+// there's no benefit to doing it either way
+
 function App() {
   const expenses = [
     {

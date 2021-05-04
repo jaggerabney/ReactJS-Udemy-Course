@@ -18,6 +18,10 @@ function ExpenseItem(props) {
   // data can be passed to components
   // this is done via "props", which are essentially
   // custom HTML attributes
+  function clickHandler() {
+    console.log("Clicked!");
+  };
+
   return (
     <Card className="expense-item">
       <ExpenseDate date={props.date} />
@@ -25,6 +29,7 @@ function ExpenseItem(props) {
         <h2>{props.title}</h2>
         <div className="expense-item__price">${props.amount}</div>
       </div>
+      <button onClick={clickHandler}>Change title</button>
     </Card>
   );
 }
