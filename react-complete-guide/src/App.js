@@ -1,4 +1,5 @@
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 import React from "react";
 
 // component functions can be written as arrow functions
@@ -57,7 +58,7 @@ function App() {
     // you also need to specify the properties parameter in the
     // components function!
     <div>
-      <h2>Let's get started!</h2>
+      <NewExpense />
       <Expenses items={expenses} />
     </div>
 
