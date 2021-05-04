@@ -12,7 +12,7 @@
 // they must be imported for them to work however
 import "./ExpenseItem.css";
 import ExpenseDate from "./ExpenseDate";
-import Card from "./Card";
+import Card from "../UI/Card";
 
 function ExpenseItem(props) {
   // data can be passed to components

@@ -1,5 +1,5 @@
-import ExpenseItem from "./components/ExpenseItem";
-import Expenses from "./components/Expenses";
+import Expenses from "./components/Expenses/Expenses";
+import React from "react";
 
 function App() {
   const expenses = [
@@ -54,12 +54,25 @@ function App() {
     // components function!
     <div>
       <h2>Let's get started!</h2>
-      <Expenses items={expenses}/>
+      <Expenses items={expenses} />
     </div>
 
     // all react elements must have their first letter capitalized;
     // that is how they are identified as react components
   );
+
+  // this is the alternate to using JSX code
+  // if you want to do this (for some reason), make sure to
+  // import React from "react";
+  // this is how it was done in the past
+  // this functionality is also why there can only be one React component
+  // returned in a return statement; it only accepts one argument
+  // return React.createElement(
+  //   "div",
+  //   {},
+  //   React.createElement("h2", {}, "Let's get started!"),
+  //   React.createElement(Expenses, {items: expenses})
+  // );
 }
 
 export default App;
