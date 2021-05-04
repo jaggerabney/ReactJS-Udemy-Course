@@ -11,20 +11,21 @@
 // css files can be written for components as well;
 // they must be imported for them to work however
 import "./ExpenseItem.css";
-import ExpenseDate from "./ExpenseDate"
+import ExpenseDate from "./ExpenseDate";
+import Card from "./Card";
 
 function ExpenseItem(props) {
   // data can be passed to components
   // this is done via "props", which are essentially
   // custom HTML attributes
   return (
-    <div className="expense-item">
-      <ExpenseDate date={props.date}/>
+    <Card className="expense-item">
+      <ExpenseDate date={props.date} />
       <div className="expense-item__description">
         <h2>{props.title}</h2>
         <div className="expense-item__price">${props.amount}</div>
       </div>
-    </div>
+    </Card>
   );
 }
 
