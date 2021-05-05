@@ -20,7 +20,7 @@ function ExpenseForm() {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        enteredTitle: event.target.value
+        enteredTitle: event.target.value,
       };
     });
   }
@@ -29,7 +29,7 @@ function ExpenseForm() {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        enteredAmount: event.target.value
+        enteredAmount: event.target.value,
       };
     });
   }
@@ -37,18 +37,32 @@ function ExpenseForm() {
   function dateChangeHandler(event) {
     setUserInput((prevState) => {
       return {
-        ...userInput,
-        enteredDate: event.target.value
+        ...prevState,
+        enteredDate: event.target.value,
       };
     });
   }
 
+  function submitHandler(event) {
+    event.preventDefault();
+    console.log(userInput);
+    setUserInput({
+      enteredTitle: "",
+      enteredAmount: "",
+      enteredDate: "",
+    });
+  }
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input type="text" onChange={titleChangeHandler} />
+          <input
+            type="text"
+            value={userInput.enteredTitle}
+            onChange={titleChangeHandler}
+          />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
@@ -57,6 +71,7 @@ function ExpenseForm() {
             min="0.00"
             step="0.01"
             onChange={amountChangeHandler}
+            value={userInput.enteredAmount}
           />
         </div>
         <div className="new-expense__control">
@@ -66,6 +81,7 @@ function ExpenseForm() {
             min="2019-01-01"
             max="2022-12-31"
             onChange={dateChangeHandler}
+            value={userInput.enteredDate}
           />
         </div>
       </div>
