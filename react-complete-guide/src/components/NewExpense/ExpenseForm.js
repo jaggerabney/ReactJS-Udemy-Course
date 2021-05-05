@@ -13,23 +13,33 @@ function ExpenseForm() {
   });
 
   function titleChangeHandler(event) {
-    setUserInput({
-      ...userInput,
-      enteredTitle: event.target.value
+    // anonymous arrow updates are used because state updates are
+    // scheduled in react; they are not done instantly
+    // doing it like this is the safest way possible;
+    // it ensures that the previous state will be 100% correct
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        enteredTitle: event.target.value
+      };
     });
   }
 
   function amountChangeHandler(event) {
-    setUserInput({
-      ...userInput,
-      enteredAmount: event.target.value
+    setUserInput((prevState) => {
+      return {
+        ...prevState,
+        enteredAmount: event.target.value
+      };
     });
   }
 
   function dateChangeHandler(event) {
-    setUserInput({
-      ...userInput,
-      enteredDate: event.target.value
+    setUserInput((prevState) => {
+      return {
+        ...userInput,
+        enteredDate: event.target.value
+      };
     });
   }
 
