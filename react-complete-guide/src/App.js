@@ -3,7 +3,7 @@ import NewExpense from "./components/NewExpense/NewExpense";
 import React from "react";
 
 // component functions can be written as arrow functions
-// it's 100% optional - as the project stands right now, 
+// it's 100% optional - as the project stands right now,
 // there's no benefit to doing it either way
 
 function App() {
@@ -34,6 +34,10 @@ function App() {
     },
   ];
 
+  function addExpenseHandler(expense) {
+    console.log("In App.js", expense);
+  }
+
   return (
     // this is called jsx - javascript xml
     // its a developer-friendly way of writing pages that gets
@@ -58,7 +62,7 @@ function App() {
     // you also need to specify the properties parameter in the
     // components function!
     <div>
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses items={expenses} />
     </div>
 
