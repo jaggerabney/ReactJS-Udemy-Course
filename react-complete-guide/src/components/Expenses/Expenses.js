@@ -1,10 +1,20 @@
 import ExpenseItem from "./ExpenseItem";
+import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
 import Card from "../UI/Card";
+import React, { useState } from "react";
 import "./Expenses.css";
 
 function Expenses(props) {
+  const [selectedOption, setSelectedOption] = useState("2021");
+
+  function selectOptionHandler(selection) {
+    setSelectedOption(selection);
+    console.log(selection);
+  }
+  
   return (
     <Card className="expenses">
+      <ExpensesFilter selected={selectedOption} onSelectOption={selectOptionHandler}/>
       <ExpenseItem
         title={props.items[0].title}
         amount={props.items[0].amount}
