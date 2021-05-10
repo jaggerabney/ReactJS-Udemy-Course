@@ -38,7 +38,7 @@ function ExpenseForm(props) {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        enteredDate: event.target.value,
+        enteredDate: event.target.value
       };
     });
   }

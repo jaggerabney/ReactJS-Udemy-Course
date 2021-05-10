@@ -27,20 +27,14 @@ function ExpenseItem(props) {
   // there must be something that keeps track of when it should
   // redraw certain components whose states are being updated
   // these component instance states exist separately from each other!
-  const [title, setTitle] = useState(props.title);
-  function clickHandler() {
-    setTitle("Updated!");
-    // console.log(title);
-  }
 
   return (
     <Card className="expense-item">
       <ExpenseDate date={props.date} />
       <div className="expense-item__description">
-        <h2>{title}</h2>
+        <h2>{props.title}</h2>
         <div className="expense-item__price">${props.amount}</div>
       </div>
-      <button onClick={clickHandler}>Change title</button>
     </Card>
   );
 }

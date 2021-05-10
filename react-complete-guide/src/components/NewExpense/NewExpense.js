@@ -3,9 +3,12 @@ import ExpenseForm from "./ExpenseForm";
 
 function NewExpense(props) {
   function saveExpenseDataHandler(enteredExpenseData) {
+    const [year, month, day] = enteredExpenseData.enteredDate.split("-");
     const expenseData = {
-      ...enteredExpenseData,
-      id: Math.random().toString()
+      id: Math.random().toString(),
+      title: enteredExpenseData.enteredTitle,
+      amount: Number(enteredExpenseData.enteredAmount),
+      date: new Date(year, month - 1, day)
     };
     props.onAddExpense(expenseData);
   }
