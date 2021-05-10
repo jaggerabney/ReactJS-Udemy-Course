@@ -1,6 +1,9 @@
 import "./ExpensesFilter.css";
 import React, { useState } from "react";
 
+// this component is an example of controlled component:
+// the state of this component is controlled by another component
+// (i.e. the Expenses component)
 function ExpensesFilter(props) {
   function onSelectHandler(event) {
     props.onSelectOption(event.target.value);
