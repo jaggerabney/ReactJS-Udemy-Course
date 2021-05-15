@@ -45,16 +45,28 @@ function ExpenseForm(props) {
 
   function submitHandler(event) {
     event.preventDefault();
-    props.onSaveExpenseData(userInput);
-    setUserInput({
-      enteredTitle: "",
-      enteredAmount: "",
-      enteredDate: "",
-    });
+    const [year, month, day] = userInput.enteredDate.split("-");
+
+    const expenseData = {
+      title: userInput.enteredTitle,
+      amount: userInput.enteredAmount,
+      date: new Date(year, month - 1, day) // months are 0-based
+    }
+
+    props.onSaveExpenseData(expenseData);
+    clearUserInput();
   }
 
   function cancelButtonClickHandler() {
     props.onCancelButtonClick();
+  }
+
+  function clearUserInput() {
+    setUserInput({
+      enteredTitle: "",
+      enteredAmount: "", 
+      enteredDate: ""
+    });
   }
 
   return (

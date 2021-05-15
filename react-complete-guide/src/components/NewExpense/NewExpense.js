@@ -6,12 +6,9 @@ function NewExpense(props) {
   const [active, setActive] = useState(false);
 
   function saveExpenseDataHandler(enteredExpenseData) {
-    const [year, month, day] = enteredExpenseData.enteredDate.split("-");
     const expenseData = {
+      ...enteredExpenseData,
       id: Math.random().toString(),
-      title: enteredExpenseData.enteredTitle,
-      amount: Number(enteredExpenseData.enteredAmount),
-      date: new Date(year, month - 1, day),
     };
     buttonClickHandler(); // if you think about it, a button is clicked to get here
     props.onAddExpense(expenseData);
