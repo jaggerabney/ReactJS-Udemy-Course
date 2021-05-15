@@ -21,21 +21,23 @@ function ExpenseItem(props) {
   // this is done via "props", which are essentially
   // custom HTML attributes
 
-  // in order to dynamically update aspects of a React component, 
+  // in order to dynamically update aspects of a React component,
   // you need to use a React hook - specifically the useState hook
-  // since React apps are only drawn once upon loading, 
+  // since React apps are only drawn once upon loading,
   // there must be something that keeps track of when it should
   // redraw certain components whose states are being updated
   // these component instance states exist separately from each other!
 
   return (
-    <Card className="expense-item">
-      <ExpenseDate date={props.date} />
-      <div className="expense-item__description">
-        <h2>{props.title}</h2>
-        <div className="expense-item__price">${props.amount}</div>
-      </div>
-    </Card>
+    <li>
+      <Card className="expense-item">
+        <ExpenseDate date={props.date} />
+        <div className="expense-item__description">
+          <h2>{props.title}</h2>
+          <div className="expense-item__price">${props.amount}</div>
+        </div>
+      </Card>
+    </li>
   );
 }
 
