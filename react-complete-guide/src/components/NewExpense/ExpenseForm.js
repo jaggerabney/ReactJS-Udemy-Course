@@ -49,7 +49,7 @@ function ExpenseForm(props) {
 
     const expenseData = {
       title: userInput.enteredTitle,
-      amount: userInput.enteredAmount,
+      amount: +userInput.enteredAmount,
       date: new Date(year, month - 1, day) // months are 0-based
     }
 
