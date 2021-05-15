@@ -38,7 +38,7 @@ function ExpenseForm(props) {
     setUserInput((prevState) => {
       return {
         ...prevState,
-        enteredDate: event.target.value
+        enteredDate: event.target.value,
       };
     });
   }
@@ -51,6 +51,10 @@ function ExpenseForm(props) {
       enteredAmount: "",
       enteredDate: "",
     });
+  }
+
+  function cancelButtonClickHandler() {
+    props.onCancelButtonClick();
   }
 
   return (
@@ -86,6 +90,7 @@ function ExpenseForm(props) {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={cancelButtonClickHandler}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>

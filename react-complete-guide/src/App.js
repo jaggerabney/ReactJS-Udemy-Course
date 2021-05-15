@@ -35,11 +35,16 @@ const INITIAL_EXPENSES = [
 
 function App() {
   const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
+  const [active, setActive] = useState(false);
 
   function addExpenseHandler(expense) {
-    setExpenses(prevExpenses => {
+    setExpenses((prevExpenses) => {
       return [expense, ...prevExpenses];
     });
+  }
+
+  function buttonClickHandler() {
+    setActive(!active);
   }
 
   return (
@@ -66,7 +71,10 @@ function App() {
     // you also need to specify the properties parameter in the
     // components function!
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
+      <NewExpense
+        onAddExpense={addExpenseHandler}
+        onButtonClick={buttonClickHandler}
+      />
       <Expenses items={expenses} />
     </div>
 
