@@ -6,6 +6,9 @@ import "./Expenses.css";
 
 function Expenses(props) {
   const [selectedOption, setSelectedOption] = useState("2021");
+  const filteredExpenses = props.items.filter(expense => {
+    return Number(selectedOption) === expense.date.getFullYear();
+  });
 
   function selectOptionHandler(selection) {
     setSelectedOption(selection);
@@ -17,7 +20,7 @@ function Expenses(props) {
         selected={selectedOption}
         onSelectOption={selectOptionHandler}
       />
-      {props.items.map((expense) => (
+      {filteredExpenses.map((expense) => (
         <ExpenseItem
           key={expense.id}
           title={expense.title}
