@@ -4,7 +4,9 @@ import Card from "./components/UI/Card";
 function App() {
   return (
     <div>
-      <Card />
+      <Card>
+        <p>Bruh</p>
+      </Card>
     </div>
   );
 }
