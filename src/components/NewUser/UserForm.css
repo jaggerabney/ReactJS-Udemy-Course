@@ -1,0 +1,18 @@
+.user-form__controls {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.user-form__control label {
+  font-weight: bold;
+  display: block;
+}
+
+.user-form__control input {
+  font: inherit;
+  width: 100%;
+}
