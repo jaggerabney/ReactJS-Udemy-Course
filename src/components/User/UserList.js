@@ -1,5 +1,6 @@
 import UserItem from "./UserItem";
 import Card from "../UI/Card"
+import "./UserList.css";
 
 function UserList(props) {
   if (props.users.length === 0) {

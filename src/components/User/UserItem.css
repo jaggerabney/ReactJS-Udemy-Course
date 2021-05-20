@@ -1,0 +1,8 @@
+.user-item {
+  border: 1px solid gray;
+  padding: 0 0.5rem;
+}
+
+.user-item p {
+  margin: 0.5rem 0;
+}
