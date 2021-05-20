@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../UI/Button";
 import "./UserForm.css";
 
 function UserForm(props) {
@@ -66,7 +67,7 @@ function UserForm(props) {
           />
         </div>
         <div>
-          <button type="submit">Add User</button>
+          <Button type="submit">Add User</Button>
         </div>
       </div>
     </form>
