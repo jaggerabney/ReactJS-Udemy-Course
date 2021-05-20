@@ -27,6 +27,13 @@ function UserForm(props) {
 
   function submitHandler(event) {
     event.preventDefault();
+
+    const userData = {
+      username: userInput.enteredUsername,
+      age: +userInput.enteredAge
+    };
+
+    props.onSubmitUserData(userData);
     clearUserInput();
   }
 
