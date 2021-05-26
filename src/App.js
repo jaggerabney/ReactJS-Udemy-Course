@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Card from "./components/UI/Card";
 import NewUser from "./components/NewUser/NewUser";
 import Users from "./components/User/Users";
+import ErrorModal from "./components/Modal/ErrorModal";
 
 function App() {
   const [users, setUsers] = useState([]);
 
   function userDataSubmitHandler(userData) {
-    setUsers(prevState => {
+    setUsers((prevState) => {
       return [...prevState, userData];
     });
   }
@@ -15,9 +16,9 @@ function App() {
   return (
     <div>
       <Card>
-        <NewUser onSubmitUserData={userDataSubmitHandler}/>
+        <NewUser onSubmitUserData={userDataSubmitHandler} />
       </Card>
-      <Users items={users}/>
+      <Users items={users} />
     </div>
   );
 }

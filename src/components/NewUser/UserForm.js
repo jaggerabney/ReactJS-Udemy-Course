@@ -31,7 +31,13 @@ function UserForm(props) {
 
     const userData = {
       username: userInput.enteredUsername,
-      age: +userInput.enteredAge
+      age: +userInput.enteredAge,
+      usernameIsValid: function() {
+        return (this.username.trim().length > 0);
+      },
+      ageIsValid: function() {
+        return (this.age > 0) && (this.age < 123);
+      }
     };
 
     props.onSubmitUserData(userData);
