@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../UI/Button";
+import ErrorModal from "../Modal/ErrorModal";
 import "./UserForm.css";
 
 function UserForm(props) {
@@ -32,12 +33,12 @@ function UserForm(props) {
     const userData = {
       username: userInput.enteredUsername,
       age: +userInput.enteredAge,
-      usernameIsValid: function() {
-        return (this.username.trim().length > 0);
+      usernameIsValid: function () {
+        return this.username.trim().length > 0;
       },
-      ageIsValid: function() {
-        return (this.age > 0) && (this.age < 123);
-      }
+      ageIsValid: function () {
+        return this.age > 0 && this.age < 123;
+      },
     };
 
     props.onSubmitUserData(userData);
@@ -52,31 +53,34 @@ function UserForm(props) {
   }
 
   return (
-    <form onSubmit={submitHandler}>
-      <div className="user-form__controls">
-        <div className="user-form__control">
-          <label>Username</label>
-          <input
-            type="text"
-            onChange={usernameChangeHandler}
-            value={userInput.enteredUsername}
-          />
+    <div>
+      <ErrorModal title="An error occured!" message="Something went wrong!" />
+      <form className="user-form" onSubmit={submitHandler}>
+        <div className="user-form__controls">
+          <div className="user-form__control">
+            <label>Username</label>
+            <input
+              type="text"
+              onChange={usernameChangeHandler}
+              value={userInput.enteredUsername}
+            />
+          </div>
+          <div className="user-form__control">
+            <label>Age (Years)</label>
+            <input
+              type="number"
+              min="0"
+              max="122"
+              onChange={ageChangeHandler}
+              value={userInput.enteredAge}
+            />
+          </div>
+          <div>
+            <Button type="submit">Add User</Button>
+          </div>
         </div>
-        <div className="user-form__control">
-          <label>Age (Years)</label>
-          <input
-            type="number"
-            min="0"
-            max="122"
-            onChange={ageChangeHandler}
-            value={userInput.enteredAge}
-          />
-        </div>
-        <div>
-          <Button type="submit">Add User</Button>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
 
