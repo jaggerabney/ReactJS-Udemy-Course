@@ -1,17 +1,11 @@
 import Button from "../UI/Button";
 import Card from "../UI/Card";
-import Wrapper from "../Helpers/Wrapper";
+import React from "react";
 import styles from "./ErrorModal.module.css";
 
 function ErrorModal(props) {
-  // TODO: add this modal to the page somehow!
-
-  function modalButtonClickHandler() {
-    props.onClose();
-  }
-
   return (
-    <Wrapper>
+    <React.Fragment>
       <div className={styles.backdrop} onClick={props.onConfirm}></div>
       <Card className={styles.modal}>
         <header className={styles.header}>
@@ -24,7 +18,7 @@ function ErrorModal(props) {
           <Button onClick={props.onConfirm}>Okay</Button>
         </footer>
       </Card>
-    </Wrapper>
+    </React.Fragment>
   );
 }
 
