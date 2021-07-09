@@ -1,32 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Button from "../UI/Button";
 import ErrorModal from "../Modal/ErrorModal";
 import "./UserForm.css";
 
 function UserForm(props) {
-  const [userInput, setUserInput] = useState({
-    enteredUsername: "",
-    enteredAge: "",
-  });
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
   const [error, setError] = useState();
-
-  function usernameChangeHandler(event) {
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        enteredUsername: event.target.value,
-      };
-    });
-  }
-
-  function ageChangeHandler(event) {
-    setUserInput((prevState) => {
-      return {
-        ...prevState,
-        enteredAge: event.target.value,
-      };
-    });
-  }
 
   function errorHandler() {
     setError(null);
@@ -34,10 +14,13 @@ function UserForm(props) {
 
   function submitHandler(event) {
     event.preventDefault();
+    
+    const enteredUsername = nameInputRef.current.value;
+    const enteredAge = ageInputRef.current.value;
 
     if (
-      userInput.enteredUsername.trim().length === 0 ||
-      userInput.enteredAge.trim().length === 0
+      enteredUsername.trim().length === 0 ||
+      enteredAge.trim().length === 0
     ) {
       setError({
         title: "Invalid input",
@@ -45,7 +28,7 @@ function UserForm(props) {
       });
       clearUserInput();
       return;
-    } else if (+userInput.enteredAge < 1) {
+    } else if (enteredAge < 1) {
       setError({
         title: "Invalid input",
         message: "Please enter a valid age (greater than 0).",
@@ -55,8 +38,8 @@ function UserForm(props) {
     }
 
     const userData = {
-      username: userInput.enteredUsername,
-      age: +userInput.enteredAge,
+      username: enteredUsername,
+      age: enteredAge,
       usernameIsValid: function () {
         return this.username.trim().length > 0;
       },
@@ -70,10 +53,8 @@ function UserForm(props) {
   }
 
   function clearUserInput() {
-    setUserInput({
-      enteredUsername: "",
-      enteredAge: "",
-    });
+    nameInputRef.current.value = "";
+    ageInputRef.current.value = "";
   }
 
   return (
@@ -91,16 +72,14 @@ function UserForm(props) {
             <label>Username</label>
             <input
               type="text"
-              onChange={usernameChangeHandler}
-              value={userInput.enteredUsername}
+              ref={nameInputRef}
             />
           </div>
           <div className="user-form__control">
             <label>Age (Years)</label>
             <input
               type="number"
-              onChange={ageChangeHandler}
-              value={userInput.enteredAge}
+              ref={ageInputRef}
             />
           </div>
           <div>
