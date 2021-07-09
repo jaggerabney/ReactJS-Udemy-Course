@@ -8,6 +8,7 @@ function UserForm(props) {
     enteredUsername: "",
     enteredAge: "",
   });
+  const [error, setError] = useState();
 
   function usernameChangeHandler(event) {
     setUserInput((prevState) => {
@@ -29,6 +30,19 @@ function UserForm(props) {
 
   function submitHandler(event) {
     event.preventDefault();
+
+    if (userInput.enteredUsername.trim().length === 0 || userInput.enteredAge.trim().length === 0) {
+      setError({
+        title: "Invalid input",
+        message: "Please enter a valid name and age (non-empty values)."
+      });
+      return;
+    } else if (+userInput.enteredAge < 1) {
+      setError({
+        title: "Invalid input",
+        message: "Please enter a valid age (greater than 0)."
+      });
+    }
 
     const userData = {
       username: userInput.enteredUsername,
@@ -54,7 +68,7 @@ function UserForm(props) {
 
   return (
     <div>
-      <ErrorModal title="An error occured!" message="Something went wrong!" />
+      {error && <ErrorModal title={error.title} message={error.message} />}
       <form className="user-form" onSubmit={submitHandler}>
         <div className="user-form__controls">
           <div className="user-form__control">
