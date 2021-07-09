@@ -28,20 +28,30 @@ function UserForm(props) {
     });
   }
 
+  function errorHandler() {
+    setError(null);
+  }
+
   function submitHandler(event) {
     event.preventDefault();
 
-    if (userInput.enteredUsername.trim().length === 0 || userInput.enteredAge.trim().length === 0) {
+    if (
+      userInput.enteredUsername.trim().length === 0 ||
+      userInput.enteredAge.trim().length === 0
+    ) {
       setError({
         title: "Invalid input",
-        message: "Please enter a valid name and age (non-empty values)."
+        message: "Please enter a valid name and age (non-empty values).",
       });
+      clearUserInput();
       return;
     } else if (+userInput.enteredAge < 1) {
       setError({
         title: "Invalid input",
-        message: "Please enter a valid age (greater than 0)."
+        message: "Please enter a valid age (greater than 0).",
       });
+      clearUserInput();
+      return;
     }
 
     const userData = {
@@ -68,7 +78,13 @@ function UserForm(props) {
 
   return (
     <div>
-      {error && <ErrorModal title={error.title} message={error.message} />}
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onConfirm={errorHandler}
+        />
+      )}
       <form className="user-form" onSubmit={submitHandler}>
         <div className="user-form__controls">
           <div className="user-form__control">
@@ -83,8 +99,6 @@ function UserForm(props) {
             <label>Age (Years)</label>
             <input
               type="number"
-              min="0"
-              max="122"
               onChange={ageChangeHandler}
               value={userInput.enteredAge}
             />
