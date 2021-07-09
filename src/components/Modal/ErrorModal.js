@@ -1,5 +1,6 @@
 import Button from "../UI/Button";
 import Card from "../UI/Card";
+import Wrapper from "../Helpers/Wrapper";
 import styles from "./ErrorModal.module.css";
 
 function ErrorModal(props) {
@@ -10,7 +11,7 @@ function ErrorModal(props) {
   }
 
   return (
-    <div>
+    <Wrapper>
       <div className={styles.backdrop} onClick={props.onConfirm}></div>
       <Card className={styles.modal}>
         <header className={styles.header}>
@@ -23,7 +24,7 @@ function ErrorModal(props) {
           <Button onClick={props.onConfirm}>Okay</Button>
         </footer>
       </Card>
-    </div>
+    </Wrapper>
   );
 }
 

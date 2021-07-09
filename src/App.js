@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from "./components/UI/Card";
 import NewUser from "./components/NewUser/NewUser";
 import Users from "./components/User/Users";
-import ErrorModal from "./components/Modal/ErrorModal";
+import Wrapper from "./components/Helpers/Wrapper";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -14,12 +14,12 @@ function App() {
   }
 
   return (
-    <div>
+    <Wrapper>
       <Card>
         <NewUser onSubmitUserData={userDataSubmitHandler} />
       </Card>
       <Users items={users} />
-    </div>
+    </Wrapper>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../UI/Button";
 import ErrorModal from "../Modal/ErrorModal";
+import Wrapper from "../Helpers/Wrapper";
 import "./UserForm.css";
 
 function UserForm(props) {
@@ -77,7 +78,7 @@ function UserForm(props) {
   }
 
   return (
-    <div>
+    <Wrapper>
       {error && (
         <ErrorModal
           title={error.title}
@@ -108,7 +109,7 @@ function UserForm(props) {
           </div>
         </div>
       </form>
-    </div>
+    </Wrapper>
   );
 }
 
