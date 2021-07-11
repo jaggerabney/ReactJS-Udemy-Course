@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
@@ -52,9 +52,8 @@ const Login = (props) => {
     }, 500);
     return () => {
       clearTimeout(validityCheckTimer);
-      console.log("reached");
     };
-  }, [formState]);
+  }, [formState.emailIsValid, formState.passwordIsValid]);
 
   const emailChangeHandler = (event) => {
     dispatchForm({ type: "EMAIL_INPUT", val: event.target.value });
@@ -62,7 +61,6 @@ const Login = (props) => {
 
   const passwordChangeHandler = (event) => {
     dispatchForm({ type: "PASSWORD_INPUT", val: event.target.value });
-    console.log(formState.password);
   };
 
   const blurHandler = () => {
