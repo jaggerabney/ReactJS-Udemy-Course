@@ -9,24 +9,15 @@ function formReducer(state, action) {
   switch (action.type) {
     case "EMAIL_INPUT":
       return {
+        ...state,
         email: action.val,
-        password: state.password,
         emailIsValid: action.val.includes("@"),
-        passwordIsValid: state.passwordIsValid,
       };
     case "PASSWORD_INPUT":
       return {
-        email: state.email,
+        ...state,
         password: action.val,
-        emailIsValid: state.emailIsValid,
         passwordIsValid: action.val.trim().length > 6,
-      };
-    case "INPUT_BLUR":
-      return {
-        email: state.email,
-        password: state.password,
-        emailIsValid: state.emailIsValid,
-        passwordIsValid: state.passwordIsValid,
       };
     default:
       return {
@@ -65,10 +56,6 @@ const Login = (props) => {
     dispatchForm({ type: "PASSWORD_INPUT", val: event.target.value });
   };
 
-  const blurHandler = () => {
-    dispatchForm({ type: "INPUT_BLUR" });
-  };
-
   const submitHandler = (event) => {
     event.preventDefault();
     authContext.onLogin(formState.email, formState.password);
@@ -88,7 +75,6 @@ const Login = (props) => {
             id="email"
             value={formState.email}
             onChange={emailChangeHandler}
-            onBlur={blurHandler}
           />
         </div>
         <div
@@ -102,7 +88,6 @@ const Login = (props) => {
             id="password"
             value={formState.password}
             onChange={passwordChangeHandler}
-            onBlur={blurHandler}
           />
         </div>
         <div className={classes.actions}>
