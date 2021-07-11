@@ -1,46 +1,77 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer, useRef, useState } from "react";
 
-import Card from '../UI/Card/Card';
-import classes from './Login.module.css';
-import Button from '../UI/Button/Button';
+import Card from "../UI/Card/Card";
+import classes from "./Login.module.css";
+import Button from "../UI/Button/Button";
+
+function formReducer(state, action) {
+  switch (action.type) {
+    case "EMAIL_INPUT":
+      return {
+        email: action.val,
+        password: state.password,
+        emailIsValid: action.val.includes("@"),
+        passwordIsValid: state.passwordIsValid,
+      };
+    case "PASSWORD_INPUT":
+      return {
+        email: state.email,
+        password: action.val,
+        emailIsValid: state.emailIsValid,
+        passwordIsValid: action.val.trim().length > 6,
+      };
+    case "INPUT_BLUR":
+      return {
+        email: state.email,
+        password: state.password,
+        emailIsValid: state.emailIsValid,
+        passwordIsValid: state.passwordIsValid,
+      };
+    default:
+      return {
+        email: "",
+        password: "",
+        emailIsValid: null,
+        passwordIsValid: null,
+      };
+  }
+}
 
 const Login = (props) => {
-  const [enteredEmail, setEnteredEmail] = useState('');
-  const [emailIsValid, setEmailIsValid] = useState();
-  const [enteredPassword, setEnteredPassword] = useState('');
-  const [passwordIsValid, setPasswordIsValid] = useState();
-  const [formIsValid, setFormIsValid] = useState(false);
+  const [formIsValid, setFormIsValid] = useState(null); // using the validity checks in formState causes bugs
+  const [formState, dispatchForm] = useReducer(formReducer, {
+    email: "",
+    password: "",
+    usernameIsValid: null,
+    passwordIsValid: null,
+  });
 
   useEffect(() => {
     const validityCheckTimer = setTimeout(() => {
-      setFormIsValid(
-        enteredEmail.includes('@') && enteredPassword.trim().length > 6
-      );
+      setFormIsValid(formState.emailIsValid && formState.passwordIsValid);
     }, 500);
     return () => {
       clearTimeout(validityCheckTimer);
+      console.log("reached");
     };
-  }, [enteredEmail, enteredPassword]);
+  }, [formState]);
 
   const emailChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
+    dispatchForm({ type: "EMAIL_INPUT", val: event.target.value });
   };
 
   const passwordChangeHandler = (event) => {
-    setEnteredPassword(event.target.value);
+    dispatchForm({ type: "PASSWORD_INPUT", val: event.target.value });
+    console.log(formState.password);
   };
 
-  const validateEmailHandler = () => {
-    setEmailIsValid(enteredEmail.includes('@'));
-  };
-
-  const validatePasswordHandler = () => {
-    setPasswordIsValid(enteredPassword.trim().length > 6);
+  const blurHandler = () => {
+    dispatchForm({ type: "INPUT_BLUR" });
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onLogin(enteredEmail, enteredPassword);
+    props.onLogin(formState.email, formState.password);
   };
 
   return (
@@ -48,30 +79,30 @@ const Login = (props) => {
       <form onSubmit={submitHandler}>
         <div
           className={`${classes.control} ${
-            emailIsValid === false ? classes.invalid : ''
+            formState.emailIsValid === false ? classes.invalid : ""
           }`}
         >
           <label htmlFor="email">E-Mail</label>
           <input
             type="email"
             id="email"
-            value={enteredEmail}
+            value={formState.email}
             onChange={emailChangeHandler}
-            onBlur={validateEmailHandler}
+            onBlur={blurHandler}
           />
         </div>
         <div
           className={`${classes.control} ${
-            passwordIsValid === false ? classes.invalid : ''
+            formState.passwordIsValid === false ? classes.invalid : ""
           }`}
         >
           <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
-            value={enteredPassword}
+            value={formState.password}
             onChange={passwordChangeHandler}
-            onBlur={validatePasswordHandler}
+            onBlur={blurHandler}
           />
         </div>
         <div className={classes.actions}>
